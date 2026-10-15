@@ -1,0 +1,240 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Copy as drawn in Figma (node 80:41).
+// Bold runs are the DejaVu Sans Bold spans of the design. Files to download
+// do not exist yet, so "Descarga" renders as a non-link until they do.
+const left = [
+  {
+    id: "estatutos",
+    title: "estatutos fundacionales",
+    height: 222,
+    paragraphs: [
+      ["Los estatutos del movimiento son las reglas fundamentales que rigen nuestra organización."],
+      ["Aquí podrás encontrar cómo nos organizamos y cómo funcionan los procesos internos."],
+    ],
+  },
+  {
+    id: "informes",
+    title: "MANUAL DE informes",
+    height: 222,
+    paragraphs: [
+      [
+        "La organización está comprometida con ",
+        { strong: "la transparencia de sus procesos" },
+        ", por lo que todos los miembros disponen de un formato estándar para la entrega de informes, tanto de gestión como administrativos.",
+      ],
+    ],
+  },
+  {
+    id: "membresia",
+    title: "MANUAL DE MEMBRESÍA",
+    height: 222,
+    paragraphs: [
+      [
+        "Los miembros activistas y simpatizantes cuentan con un manual que explica cómo pueden colaborar abiertamente con la organización, con el fin de generar una estructura activa en ",
+        { strong: "defensa del pensamiento liberal-libertario." },
+      ],
+    ],
+  },
+  {
+    id: "estructura",
+    title: "MANUAL DE ESTRUCTURA",
+    height: 255,
+    paragraphs: [
+      [
+        "La organización es clave para alcanzar los objetivos que nos planteamos como libertarios. Por eso, nuestra prioridad es mantener una estructura sólida que brinde fortaleza y perdure en el tiempo.",
+      ],
+      ["Este manual explica cómo estamos organizados."],
+    ],
+  },
+];
+const right = [
+  {
+    id: "electoral",
+    title: "manual electoral",
+    height: 209,
+    paragraphs: [
+      [
+        "Para nosotros es importante la participación de todos los miembros en los procesos internos. Por ello, hemos diseñado los mecanismos necesarios para fomentar procesos electorales seguros y transparentes.",
+      ],
+    ],
+  },
+  {
+    id: "valores",
+    title: "manual DE VALORES",
+    height: 222,
+    paragraphs: [
+      ["Trabajamos para construir una sociedad libre y próspera."],
+      [
+        "Ser venezolano significa ser conscientes de la responsabilidad histórica que implica lograr esa meta. Los valores y principios que defendemos están orientados en esa dirección.",
+      ],
+    ],
+  },
+  {
+    id: "liderazgo",
+    title: "manual de liderazgo",
+    height: 222,
+    paragraphs: [
+      [
+        "El liderazgo es fundamental para los jóvenes libertarios. Frente a la sociedad venezolana, ",
+        {
+          strong:
+            "debemos formar líderes con fuerza, convicción, sacrificio y un ideario libertario bien consolidado.",
+        },
+      ],
+    ],
+  },
+];
+const columns = [
+  { id: "izquierda", docs: left },
+  { id: "derecha", docs: right },
+];
+---
+
+<BaseLayout
+  title="Documentos | Movimiento Libertario de Venezuela"
+  description="Estatutos y manuales del Movimiento Libertario de Venezuela: informes, membresía, estructura, procesos electorales, valores y liderazgo."
+  current="documentos"
+>
+  <main>
+    <section class="titulo" aria-labelledby="documentos-title">
+      <div class="container">
+        <h1 id="documentos-title">nuestros documentos:</h1>
+      </div>
+    </section>
+
+    <div class="documentos">
+      {
+        columns.map((col) => (
+          <div class={`columna columna--${col.id}`}>
+            {col.docs.map((d) => (
+              <article id={`recursos-doc-${d.id}`} class="doc" style={`min-height:${d.height}px`} aria-labelledby={`doc-${d.id}`}>
+                <h2 id={`doc-${d.id}`}>{d.title}</h2>
+                <div class="text">
+                  {d.paragraphs.map((p) => (
+                    <p>
+                      {p.map((run) => (typeof run === "string" ? run : <strong>{run.strong}</strong>))}
+                    </p>
+                  ))}
+                </div>
+                <span class="descarga">DESCARGA</span>
+              </article>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Title band: 276 px ink, h1 70 px at x 60, 61 px below the band top. */
+  .titulo {
+    height: 276px;
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+  .titulo h1 {
+    max-width: 488px;
+    padding-top: 61px;
+    font-size: var(--fs-70);
+    line-height: var(--lh-tight);
+    text-transform: uppercase;
+  }
+
+  /* Two dashed columns: left 577 px at x 60, right 579 px at x 781, both from y 515. */
+  .documentos {
+    display: grid;
+    grid-template-columns: 577px 579px;
+    column-gap: 144px;
+    align-items: start;
+    max-width: var(--page-width);
+    margin: 81px auto 120px;
+    padding-inline: var(--page-gutter);
+  }
+  .columna {
+    display: flex;
+    flex-direction: column;
+    padding: 17px 20px 28px;
+    border: 1px dashed var(--color-doc-outline);
+    border-radius: 8px;
+  }
+  .columna--izquierda {
+    gap: 42px;
+  }
+  .columna--derecha {
+    gap: 66px;
+  }
+
+  .doc {
+    position: relative;
+    width: 438px;
+    padding-bottom: 0;
+  }
+  .doc h2 {
+    font-size: var(--fs-32);
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .text {
+    color: var(--color-black);
+    font-family: var(--font-body);
+    font-size: var(--fs-18);
+    line-height: var(--lh-normal);
+    text-align: justify;
+  }
+  .text p + p {
+    margin-top: 1lh;
+  }
+  .descarga {
+    display: block;
+    width: 146px;
+    height: 25px;
+    margin-top: 20px;
+    border-radius: 13px;
+    background: var(--color-brand-yellow);
+    color: var(--color-black);
+    font-size: var(--fs-11);
+    line-height: 25px;
+    text-align: center;
+  }
+
+  /* Tablet and mobile (derived): one column of cards. */
+  @media (max-width: 1024px) {
+    .titulo {
+      height: auto;
+      padding-bottom: 48px;
+    }
+    .titulo h1 {
+      max-width: none;
+      padding-top: 40px;
+      font-size: var(--fs-48);
+    }
+    .documentos {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 32px;
+      margin-block: 48px 64px;
+    }
+    .columna--izquierda,
+    .columna--derecha {
+      gap: 40px;
+    }
+    .doc {
+      width: auto;
+      min-height: 0 !important;
+    }
+  }
+  @media (max-width: 640px) {
+    .titulo h1 {
+      font-size: var(--fs-40);
+    }
+    .doc h2 {
+      font-size: var(--fs-24);
+    }
+    .text {
+      text-align: left;
+    }
+  }
+</style>

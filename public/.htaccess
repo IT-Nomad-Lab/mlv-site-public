@@ -1,0 +1,8 @@
+# Static export served by Hostinger (Apache) as plain files.
+ErrorDocument 404 /404.html
+Options -Indexes
+
+# Demo only: keep search engines out until the real launch. Remove this block then.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

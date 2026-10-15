@@ -1,0 +1,168 @@
+---
+import button from "../assets/menu/button.svg";
+import buttonActive from "../assets/menu/button-active.svg";
+import logoText from "../assets/menu/logo-text.svg";
+import logoMark from "../assets/menu/logo-mark.svg";
+
+interface Props {
+  current?: "organizacion" | "colabora" | "documentos" | "blog" | "afiliacion";
+}
+
+const { current } = Astro.props;
+
+// Items as drawn in the Inicio frame. Targets come from the example site
+// (mlv-andres.vercel.app): Colabora opens Donativos, Afiliación the members site.
+const items = [
+  { key: "organizacion", label: "ORGANIZACIÓN", href: "/organizacion" },
+  { key: "colabora", label: "COLABORA", href: "/donativos" },
+  { key: "documentos", label: "DOCUMENTOS", href: "/documentos" },
+  { key: "blog", label: "BLOG", href: "/blog" },
+  { key: "afiliacion", label: "AFILIACIÓN", href: "https://miembros.movimientolibertario.org/", external: true },
+] as const;
+---
+
+<header class="menu">
+  <div class="menu__inner">
+    <a class="menu__logo" href="/" aria-label="Movimiento Libertario de Venezuela">
+      <img src={logoMark.src} alt="" width="80" height="75" />
+      <img src={logoText.src} alt="" width="143" height="57" />
+    </a>
+    <button class="menu__toggle" type="button" aria-expanded="false" aria-controls="menu-nav" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="menu-nav" aria-label="Principal">
+      <ul>
+        {
+          items.map((item) => {
+            const bg = item.key === current ? buttonActive.src : button.src;
+            return (
+              <li>
+                {"href" in item ? (
+                  <a
+                    href={item.href}
+                    target={"external" in item ? "_blank" : undefined}
+                    rel={"external" in item ? "noopener" : undefined}
+                    style={`background-image:url(${bg})`}
+                    aria-current={item.key === current ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <span style={`background-image:url(${bg})`}>{item.label}</span>
+                )}
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".menu__toggle");
+  const header = document.querySelector<HTMLElement>(".menu");
+  toggle?.addEventListener("click", () => {
+    const open = header?.classList.toggle("menu--open") ?? false;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+  });
+</script>
+
+<style>
+  .menu {
+    position: relative;
+    background: var(--color-brand-yellow);
+    height: var(--menu-height);
+  }
+  .menu__toggle {
+    display: none;
+  }
+  .menu__inner {
+    max-width: var(--page-width);
+    height: 100%;
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .menu__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .menu__logo img {
+    height: 60px;
+    width: auto;
+  }
+  ul {
+    display: flex;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li a,
+  li span {
+    display: block;
+    width: 184px;
+    height: 35px;
+    padding-top: 5px;
+    background-repeat: no-repeat;
+    background-size: 100% 34px;
+    color: var(--color-black);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--fs-16);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  /* Tablet and below: the five buttons no longer fit next to the logo. */
+  @media (max-width: 1100px) {
+    .menu__logo img {
+      height: 48px;
+    }
+    .menu__toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      width: 48px;
+      height: 48px;
+      padding: 0 10px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+    .menu__toggle span {
+      display: block;
+      height: 3px;
+      background: var(--color-black);
+    }
+    nav {
+      display: none;
+      position: absolute;
+      z-index: 10;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding: 16px var(--page-gutter) 24px;
+      background: var(--color-brand-yellow);
+      border-top: 2px solid var(--color-black);
+    }
+    .menu--open nav {
+      display: block;
+    }
+    ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+    li a,
+    li span {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+</style>

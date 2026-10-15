@@ -1,0 +1,217 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Copy as drawn in Figma (node 131:53).
+// Copy from the live site mlv-andres.vercel.app (the PayPal card in Figma repeats the Binance text).
+const options = [
+  {
+    id: "binance",
+    title: "BINANCE",
+    href: "/donativos/binance",
+    label: "COLABORA CON BINANCE",
+    paragraphs: [
+      ["Nuestra cuenta ", { strong: "Binance" }, " es maneja desde fuera de Venezuela, toda la información se conservará de manera privada."],
+      ["Nuestro equipo de finanzas se encargará de informar a todos los donantes del uso que se efectúa de los mismos."],
+    ],
+  },
+  {
+    id: "paypal",
+    title: "paypal",
+    href: "/donativos/paypal",
+    label: "APOYA CON PAYPAL",
+    paragraphs: [
+      ["Nuestra cuenta de ", { strong: "Paypal" }, " se encuentra fuera de Venezuela, tenemos otras alternativas que podemos ofrecer si se pone en contacto con nosotros directamente."],
+      ["No gestionamos costos por comisión y todos los gastos realizados serán publicados de manera privada."],
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Donativos | Movimiento Libertario de Venezuela"
+  description="Por qué apoyar al Movimiento Libertario de Venezuela y opciones de contribución."
+>
+  <main>
+    <section class="porque" aria-labelledby="porque-title">
+      <div class="porque__inner">
+        <h1 id="porque-title">¿POR QUÉ APOYARNOS?</h1>
+        <div class="text porque__text">
+          <p>
+            Nosotros trabajamos en construir un espacio seguro para los libertarios dentro y fuera de Venezuela, nuestros equipos crean contenido y crean redes de apoyo para cientos de venezolanos.
+          </p>
+          <p>
+            El apoyo que podamos recibir será para mantener nuestra organización en pie y poder expandir nuestras redes de apoyo en Venezuela.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="opciones" aria-labelledby="opciones-title">
+      <h2 id="opciones-title">OPCIONES DE CONTRIBUCIÓN</h2>
+      <div class="opciones__box">
+        {
+          options.map((o) => (
+            <article class="opcion" aria-labelledby={`opcion-${o.id}`}>
+              <h3 id={`opcion-${o.id}`}>{o.title}</h3>
+              <div class="text">
+                {o.paragraphs.map((p) => (
+                  <p>{p.map((run) => (typeof run === "string" ? run : <strong>{run.strong}</strong>))}</p>
+                ))}
+              </div>
+              <a class="opcion__cta" href={o.href}>
+                {o.label}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Por qué apoyarnos: 291 px ink band; title at x 166, text at x 595, both from y 242. */
+  .porque {
+    height: 291px;
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+  .porque__inner {
+    display: grid;
+    grid-template-columns: 480px minmax(0, 679px);
+    column-gap: 20px;
+    max-width: var(--page-width);
+    margin-inline: auto;
+    padding: 84px var(--page-gutter) 0 166px;
+  }
+  .porque h1 {
+    font-size: var(--fs-64);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .porque .text {
+    align-self: center;
+    font-size: var(--fs-18);
+    text-align: justify;
+  }
+  .porque .text p + p {
+    margin-top: 1lh;
+  }
+
+  /* Opciones: title y 534, dashed box 1145 px wide from y 655, two 488 px cards. */
+  .opciones {
+    max-width: var(--page-width);
+    margin: 85px auto 88px;
+  }
+  .opciones h2 {
+    height: 66px;
+    color: var(--color-ink);
+    font-size: var(--fs-64);
+    line-height: 0.767;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .opciones__box {
+    display: grid;
+    grid-template-columns: repeat(2, 488px);
+    column-gap: 129px;
+    width: 1145px;
+    margin: 55px auto 0;
+    padding: 26px 21px 23px;
+    border: 1px dashed var(--color-doc-outline);
+    border-radius: 8px;
+  }
+  .opcion {
+    position: relative;
+    height: 293px;
+  }
+  .opcion h3 {
+    font-size: var(--fs-32);
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .opcion .text {
+    margin-top: 40px;
+    color: var(--color-black);
+    font-family: var(--font-body);
+    font-size: var(--fs-18);
+    line-height: var(--lh-normal);
+    text-align: justify;
+  }
+  .opcion .text p + p {
+    margin-top: 1lh;
+  }
+  .opcion__cta {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    min-width: 241px;
+    height: 43px;
+    padding-inline: 25px;
+    border-radius: 95px;
+    background: var(--color-brand-yellow);
+    color: var(--color-black);
+    font-family: var(--font-display);
+    font-size: var(--fs-18);
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Tablet and mobile (derived): title above text, cards stacked. */
+  @media (max-width: 1024px) {
+    .porque {
+      height: auto;
+      padding-bottom: 48px;
+    }
+    .porque__inner {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 24px;
+      padding: 48px var(--page-gutter) 0;
+    }
+    .porque h1 {
+      font-size: var(--fs-48);
+    }
+    .opciones {
+      margin: 56px auto 64px;
+      padding-inline: var(--page-gutter);
+    }
+    .opciones h2 {
+      height: auto;
+      font-size: var(--fs-48);
+      line-height: 1.1;
+    }
+    .opciones__box {
+      width: auto;
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 40px;
+      margin-top: 32px;
+    }
+    .opcion {
+      height: auto;
+    }
+    .opcion .text {
+      margin-top: 20px;
+    }
+    .opcion__cta {
+      position: static;
+      margin-top: 24px;
+      width: fit-content;
+    }
+  }
+  @media (max-width: 640px) {
+    .porque h1,
+    .opciones h2 {
+      font-size: var(--fs-32);
+    }
+    .opcion h3 {
+      font-size: var(--fs-24);
+    }
+    .porque .text,
+    .opcion .text {
+      text-align: left;
+    }
+  }
+</style>

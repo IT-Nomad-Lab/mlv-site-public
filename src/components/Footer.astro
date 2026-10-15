@@ -1,0 +1,221 @@
+---
+import logo from "../assets/footer/logo-mlv.svg";
+import socialFiD from "../assets/footer/facebook.svg";
+import socialX from "../assets/footer/x.svg";
+
+// Footer link columns as drawn in the Inicio frame (Pie de web, 2078:482).
+// The design shows no link targets; they come from the example site
+// (mlv-andres.vercel.app). "Donativos" is not in the design, it is on the live site.
+type Item = string | { label: string; href: string; external?: boolean };
+const MEMBERS = "https://miembros.movimientolibertario.org/";
+const columns: { title: string; href: string; external?: boolean; items: Item[] }[] = [
+  {
+    title: "Organización",
+    href: "/organizacion",
+    items: [
+      { label: "Estructura", href: "/organizacion" },
+      { label: "Coordinación", href: "/organizacion#org-block-coordinacion" },
+      { label: "Junta Directiva", href: "/organizacion#org-block-junta" },
+      { label: "Comisión", href: "/organizacion#org-block-comision" },
+      { label: "Representantes", href: "/organizacion#org-block-representantes" },
+    ],
+  },
+  {
+    title: "EQUIPO",
+    href: "/organizacion",
+    items: [
+      { label: "Sala Situacional", href: "/organizacion" },
+      { label: "Venezuela Help", href: "/organizacion" },
+    ],
+  },
+  {
+    title: "RECURSOS",
+    href: "/documentos",
+    items: [
+      { label: "Estatutos", href: "/documentos#recursos-doc-estatutos" },
+      { label: "Liderazgo", href: "/documentos#recursos-doc-liderazgo" },
+      { label: "Informes", href: "/documentos#recursos-doc-informes" },
+      { label: "Electoral", href: "/documentos#recursos-doc-electoral" },
+      { label: "Membresía", href: "/documentos#recursos-doc-membresia" },
+      { label: "Valores", href: "/documentos#recursos-doc-valores" },
+      { label: "Estructura", href: "/documentos#recursos-doc-estructura" },
+    ],
+  },
+  {
+    title: "BLOG",
+    href: "/blog",
+    items: [
+      { label: "Opinión", href: "/blog#opinion" },
+      { label: "Comunicados", href: "/blog#comunicados" },
+    ],
+  },
+  {
+    title: "AFILICIÓN",
+    href: MEMBERS,
+    external: true,
+    items: [
+      { label: "Donativos", href: "/donativos" },
+      { label: "Registro", href: MEMBERS, external: true },
+    ],
+  },
+];
+
+// The Facebook, LinkedIn and Telegram icons are one SVG drawn in Figma; each link
+// covers its circle (left/width in % of the strip). Targets from the example site.
+const social = [
+  { label: "Facebook", href: "https://www.facebook.com/MLVNacional/", left: 0, width: 26 },
+  { label: "LinkedIn", href: "https://ve.linkedin.com/company/movimientolibertariovzla", left: 37, width: 26 },
+  { label: "Telegram", href: "https://t.me/MovLibVzla", left: 74, width: 26 },
+];
+---
+
+<footer class="footer">
+  <div class="footer__share">
+    <div class="footer__inner">
+      <p>comparte la libertad:</p>
+      <span class="footer__social">
+        <img src={socialFiD.src} alt="" width="119" height="31" />
+        {
+          social.map((s) => (
+            <a class="footer__social-link" style={`left:${s.left}%;width:${s.width}%`} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} />
+          ))
+        }
+      </span>
+      <a href="https://x.com/mlvnacional" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><img src={socialX.src} alt="" width="26" height="27" /></a>
+    </div>
+  </div>
+  <div class="footer__body">
+    <div class="footer__inner footer__grid">
+      {
+        columns.map((col) => (
+          <section>
+            <h2><a href={col.href} target={col.external ? "_blank" : undefined} rel={col.external ? "noopener" : undefined}>{col.title}</a></h2>
+            <ul>
+              {col.items.map((item) => typeof item === "string" ? <li>{item}</li> : <li><a href={item.href} target={item.external ? "_blank" : undefined} rel={item.external ? "noopener" : undefined}>{item.label}</a></li>)}
+            </ul>
+          </section>
+        ))
+      }
+      <div class="footer__brand">
+        <img src={logo.src} alt="Movimiento Libertario de Venezuela" width="194" height="189" />
+        <p>política de privacidad</p>
+      </div>
+    </div>
+    <p class="footer__legal footer__inner">
+      © 2026 movimiento libertario de venezuela. todos los derechos reservados
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer__inner {
+    max-width: var(--page-width);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+  }
+  .footer__social {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+  }
+  .footer__social-link {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .footer__share {
+    background: var(--color-ink);
+    color: var(--color-white);
+    height: 118px;
+    display: flex;
+    align-items: center;
+  }
+  .footer__share .footer__inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    font-family: var(--font-display);
+    font-size: var(--fs-15);
+  }
+  .footer__body {
+    background: var(--color-brand-yellow);
+    min-height: 451px;
+    padding-top: 42px;
+    color: var(--color-black);
+  }
+  .footer__grid {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  h2 {
+    font-size: var(--fs-20);
+    line-height: var(--lh-footer);
+    margin-bottom: var(--lh-footer);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--fs-20);
+    line-height: var(--lh-footer);
+  }
+  .footer__brand {
+    margin-left: auto;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: var(--fs-16);
+  }
+  .footer__legal {
+    margin-top: 48px;
+    font-family: var(--font-display);
+    font-size: var(--fs-14);
+    line-height: var(--lh-footer);
+  }
+  .footer h2 a,
+  .footer li a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (max-width: 1024px) {
+    .footer__grid {
+      flex-wrap: wrap;
+      gap: 24px 40px;
+    }
+    .footer__grid section {
+      min-width: 150px;
+    }
+    .footer__brand {
+      flex-basis: 100%;
+      margin: 24px 0 0;
+    }
+    .footer__body {
+      min-height: 0;
+      padding-bottom: 32px;
+    }
+  }
+  @media (max-width: 640px) {
+    .footer__share {
+      height: auto;
+      padding-block: 24px;
+    }
+    .footer__share .footer__inner {
+      flex-wrap: wrap;
+    }
+    ul {
+      font-size: var(--fs-16);
+      line-height: 2;
+    }
+    h2 {
+      font-size: var(--fs-16);
+      margin-bottom: 8px;
+    }
+    .footer__legal {
+      margin-top: 24px;
+      line-height: 1.5;
+    }
+  }
+</style>

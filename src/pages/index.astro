@@ -1,0 +1,545 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import fotoHero from "../assets/inicio/foto-hero.webp";
+import franja from "../assets/inicio/franja-negra.svg";
+import libertad from "../assets/inicio/libertad.svg";
+import libertarismo from "../assets/inicio/libertarismo.svg";
+import nuestroEquipo from "../assets/inicio/nuestro-equipo.svg";
+import yomar from "../assets/inicio/yomar.jpg";
+import oscar from "../assets/inicio/oscar.jpg";
+import educardo from "../assets/inicio/educardo.jpg";
+import cesar from "../assets/inicio/cesar.jpg";
+import maskYomar from "../assets/inicio/mask-yomar.svg";
+import maskOscar from "../assets/inicio/mask-oscar.svg";
+import maskEducardo from "../assets/inicio/mask-educardo.svg";
+import maskCesar from "../assets/inicio/mask-cesar.svg";
+import botonA from "../assets/inicio/boton-a.svg";
+import botonB from "../assets/inicio/boton-b.svg";
+import propParlamento from "../assets/inicio/prop-parlamento.png";
+import propDemocracia from "../assets/inicio/prop-democracia.png";
+import propColegiado from "../assets/inicio/prop-colegiado.png";
+import propConfederacion from "../assets/inicio/prop-confederacion.png";
+import propLibreMercado from "../assets/inicio/prop-libre-mercado.png";
+import propMunicipios from "../assets/inicio/prop-municipios.webp";
+import maskPropuesta from "../assets/inicio/mask-propuesta.svg";
+import comparte from "../assets/inicio/comparte.jpg";
+import maskComparte from "../assets/inicio/mask-comparte.svg";
+
+const leaders = [
+  { name: "Yomar Moreno", role: "coordinador general", photo: yomar, mask: maskYomar, button: botonB },
+  { name: "óscar torrealba", role: "secretario general", photo: oscar, mask: maskOscar, button: botonA },
+  { name: "Eduardo castillo", role: "secretario de comunicaciones", photo: educardo, mask: maskEducardo, button: botonB },
+  { name: "CÉSAR BAÉZ", role: "comisión de garantías", photo: cesar, mask: maskCesar, button: botonA },
+];
+
+// Copy as drawn in Figma (node 1:2).
+const proposals = [
+  { title: ["REPÚBLICA", "PARLAMENTARIA"], photo: propParlamento, body: "Es un tipo de organización política donde el único poder originario es el legislativo, por lo tanto el Poder Ejecutivo es elegido por el parlamento." },
+  { title: ["DEMOCRACIA", "LÍQUIDA"], photo: propDemocracia, body: "La democracia líquida logra mediante un parlamento virtual que los ciudadanos voten las propuestas de sus representantes en los parlamentos, como organizar iniciativas para vetar o realizar referéndums." },
+  { title: ["GOBIERNO", "COLEGIADO"], photo: propColegiado, body: "El Gobierno Colegiado no es un “ministro”, ni un “jefe de Estado”, es un grupo determinado de personas pertenecientes a distintos partidos políticos elegidos de manera proporcional a los votos existentes en el parlamento, que toma decisión de forma grupal." },
+  { title: ["CONFEDERACIÓN Y REPÚBLICA"], photo: propConfederacion, body: "Es una forma de organización donde las regiones y municipios pueden conservar su soberanía y NO delegarlas a un Estado Federal –que tienen la tendencia de pervertirse–, permitiendo así a las regiones y municipios separarse del territorio cuando los mandatos coactivos del Ejecutivo atenten contra los intereses de estas." },
+  { title: ["LIBRE", "MERCADO"], photo: propLibreMercado, body: "Es la máxima libertad económica basada en el individuo, con esto queremos expresar que la sociedad no necesita un planificador central para que el orden exista, sino todo lo contrario: todo orden debe ser espontáneo si lo que se busca es la libertad a través de la cooperación social pacífica." },
+  { title: ["VETOS MUNICIPALES Y ESTATALES"], photo: propMunicipios, body: "Este mecanismo institucional permitiría que las regiones y los municipios puedan decidir no reconocer una legislación y mantener su legislación anterior o no tener ninguna en esa materia." },
+];
+---
+
+<BaseLayout
+  title="Movimiento Libertario de Venezuela"
+  description="Porque una Venezuela libre es posible."
+>
+  <main>
+    <div class="hero-wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <Image class="hero__photo" src={fotoHero} alt="" widths={[666, 1332]} sizes="666px" />
+      <div class="container hero__text">
+        <h1 id="hero-title">PORQUE UNA <u>VENEZUELA</u><br />LIBRE ES POSIBLE</h1>
+        <p>
+          El Movimiento Libertario de Venezuela es un movimiento político fundado en agosto de 2015, en la ciudad de Maracay, por un grupo de jóvenes que venían del movimiento de <strong>autoconvocados</strong> y de las protestas de 2014. Comprometidos en defender la libertad de todos los venezolanos frente al régimen <em>autoritario socialista</em> que oprime nuestro pueblo.
+        </p>
+        <p>
+          Estamos convencidos que la solución tanto del autoritarismo como de los problemas históricos de Venezuela, solo tienen como respuesta la <strong>LIBERTAD</strong>. Defendemos una sociedad libre donde se defienda la propiedad privada, el libre mercado y las libertades individuales.
+        </p>
+      </div>
+    </section>
+
+    <section class="franja" aria-label="Libertad">
+      <img class="franja__band" src={franja.src} alt="" />
+      <img class="franja__word" src={libertad.src} alt="LIBERTAD" />
+    </section>
+    </div>
+
+    <section class="libertarismo container" aria-label="Libertarismo">
+      <div class="libertarismo__text">
+        <p>
+          El libertarismo, como ideología, surge de la necesidad innata del ser humano de vivir en libertad, de ser dueño de su destino y de buscar su felicidad sin la interferencia coercitiva de otros. Sin embargo, este anhelo universal adquiere una profundidad particular cuando lo vemos a través del <strong>prisma de la historia venezolana</strong>, una nación que ha sido testigo de la lucha por la libertad desde sus albores.
+        </p>
+        <p>
+          Venezuela ha sido tierra de héroes que soñaron con la libertad y que lucharon por ella con sangre y sacrificio. Simón Bolívar, Francisco de Miranda, Andrés Bello y tantos otros vieron en la emancipación no solo la liberación de un pueblo, sino la creación de una nueva sociedad basada en la justicia, la autonomía y la dignidad. Estos hombres entendieron que la libertad no era un regalo, sino una conquista, y que debía ser defendida contra toda tiranía. Estos héroes en su visión panamericana, no solo liberaron a Venezuela, sino que también trazaron el camino hacia la libertad y la independencia para todo un continente. Su lucha no fue solo militar, sino también intelectual y filosófica, sentando las bases de lo que hoy reconocemos como un espíritu <strong>libertario precursor originario.</strong>
+        </p>
+      </div>
+      <img class="libertarismo__word" src={libertarismo.src} alt="LIBERTARISMO" />
+    </section>
+
+    <section aria-labelledby="equipo-title">
+      <div class="equipo-band">
+        <img src={nuestroEquipo.src} alt="" />
+        <h2 id="equipo-title" class="sr-only">NUESTRO EQUIPO</h2>
+      </div>
+    </section>
+
+    <section aria-label="Líderes">
+      <ul class="leaders container">
+        {
+          leaders.map((l) => (
+            <li>
+              <Image
+                class="leaders__photo"
+                src={l.photo}
+                alt=""
+                width={236}
+                height={236}
+                style={`mask-image:url(${l.mask.src});-webkit-mask-image:url(${l.mask.src})`}
+              />
+              <p class="leaders__name">{l.name}</p>
+              <p class="leaders__role">{l.role}</p>
+              <img class="leaders__button" src={l.button.src} alt="" />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="band band--ink" aria-labelledby="objetivo-title">
+      <div class="container objetivo">
+        <h2 id="objetivo-title">Nuestro OBJETIVO</h2>
+        <div class="objetivo__lead">
+          <p>
+            <strong>Somos la organización libertaria con mayor vigencia en Venezuela</strong>, teniendo como objetivo la creación de un movimiento de ciudadanos tanto dentro como fuera del país, para conformar líderes que promuevan y construyan una nación donde las libertades individuales y la cooperación pacífica sean nuestra realidad.
+          </p>
+          <p>
+            Promovemos la libertad como el valor más importante en la sociedad: el respeto a la vida, a las libertades individuales, al derecho a la propiedad y a la búsqueda de la felicidad.
+          </p>
+        </div>
+        <p class="objetivo__body">
+          Entendemos las circunstancias venezolanas dentro del régimen tiránico actual, por eso nos sumamos a la lucha contra el totalitarismo socialista y estamos comprometidos en la formación de núcleos de desobediencia. Todos los espacios que los libertarios podamos usar para generar la libertad de Venezuela deben ser ocupados, por eso trabajamos en la formación de activistas en las comunidades, partidos, organizaciones comunitarias, universidades, empresas y redes internacionales.
+        </p>
+      </div>
+    </section>
+
+    <section class="band band--grey" aria-labelledby="promesa-title">
+      <div class="container promesa">
+        <div class="promesa__text">
+          <p>
+            Venezuela está sumida en un <strong>régimen socialista tiránico</strong>, mismo que ha condenado a millones de venezolanos a la miseria más absoluta de su historia, la crisis de refugiados más grande de la historia de la región y a miles de venezolanos encarcelados por no rendirse en la defensa de la libertad.
+          </p>
+          <p>
+            Ante este contexto y entendiendo nuestro llamado histórico para hacer posible una Venezuela libre, entendemos que nuestras ideas libertarias son cruciales en este momento, siendo la contra posición más radical frente el socialismo del siglo XXI y el movimiento chavista que ha secuestrado el país. Por eso nos declaramos en resistencia frente al tirano y a los criminales que sostienen el régimen actual.
+          </p>
+          <p>
+            Esta realidad nos lleva a la organización civil y política para coordinar tanto de manera interna como externa a los venezolanos y aliados externos para luchar contra el socialismo. <strong>Por eso el liderazgo es crucial, para convencer, dirigir, comunicar e interactuar con un país que necesita de cada uno de nosotros.</strong>
+          </p>
+        </div>
+        <h2 id="promesa-title">VENEZUELA ES LA PROMESA</h2>
+      </div>
+    </section>
+
+    <section class="propuestas container" aria-labelledby="propuestas-title">
+      <h2 id="propuestas-title">PROPUESTAS PARA VENEZUELA</h2>
+      <ul>
+        {
+          proposals.map((p) => (
+            <li>
+              <Image
+                class="propuestas__photo"
+                src={p.photo}
+                alt=""
+                width={190}
+                height={198}
+                style={`mask-image:url(${maskPropuesta.src});-webkit-mask-image:url(${maskPropuesta.src})`}
+              />
+              <div>
+                <h3>{p.title.map((line) => <span>{line}</span>)}</h3>
+                <p>{p.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="comparte container" aria-labelledby="comparte-title">
+      <Image
+        class="comparte__photo"
+        src={comparte}
+        alt=""
+        width={620}
+        height={233}
+        style={`mask-image:url(${maskComparte.src});-webkit-mask-image:url(${maskComparte.src})`}
+      />
+      <h2 id="comparte-title"><span>COMPARTE</span><br />NUESTRAS IDEAS</h2>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* Hero: 866 px tall in Figma; the black band sits over its bottom 291 px. */
+  .hero {
+    position: relative;
+    height: 866px;
+    overflow: hidden;
+  }
+  .hero-wrap {
+    position: relative;
+  }
+  .franja {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 291px;
+  }
+  .franja__band {
+    width: 100%;
+    height: 291px;
+  }
+  .hero__photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 666px;
+    height: 866px;
+    object-fit: cover;
+  }
+  .franja__word {
+    position: absolute;
+    left: var(--page-gutter);
+    bottom: 1px;
+    width: 506px;
+    height: 290px;
+  }
+  .hero__text {
+    position: relative;
+    padding-top: 107px;
+    max-width: calc(714px + 2 * var(--page-gutter));
+    margin-left: 0;
+  }
+  .hero h1 {
+    font-size: var(--fs-60);
+    line-height: var(--lh-tight);
+    margin-bottom: var(--stack-gap);
+  }
+  .hero p {
+    text-align: justify;
+    margin-bottom: 1em;
+  }
+
+  .libertarismo {
+    display: grid;
+    grid-template-columns: 714px 1fr;
+    gap: 40px;
+    align-items: center;
+    min-height: 502px;
+  }
+  .libertarismo__text p {
+    text-align: justify;
+    margin-bottom: 1em;
+  }
+  .libertarismo__word {
+    width: 552px;
+    justify-self: end;
+  }
+
+  .equipo-band img {
+    width: 100%;
+    height: 116px;
+  }
+  .leaders {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-block: 53px 48px;
+    list-style: none;
+    padding-block: 0;
+  }
+  .leaders li {
+    width: 236px;
+    text-align: center;
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+  }
+  .leaders__photo {
+    width: 236px;
+    height: 236px;
+    object-fit: cover;
+    object-position: top;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+  }
+  .leaders__name {
+    margin-top: 28px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: none;
+  }
+  .leaders__button {
+    margin: 14px auto 0;
+    width: 160px;
+  }
+
+  .band {
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+  }
+  .band > .container {
+    padding-block: 60px;
+  }
+  .band--ink {
+    background: var(--color-ink);
+    color: var(--color-grey-100);
+  }
+  .band--grey {
+    background: var(--color-grey-300);
+    color: var(--color-ink);
+  }
+  .objetivo {
+    display: grid;
+    grid-template-columns: minmax(302px, max-content) 1fr;
+    gap: 22px 22px;
+  }
+  .objetivo h2 {
+    font-size: var(--fs-64);
+    line-height: 0.68;
+    color: var(--color-white);
+  }
+  .objetivo p {
+    text-align: justify;
+  }
+  .objetivo__lead p + p {
+    margin-top: 1em;
+  }
+  .objetivo__body {
+    grid-column: 1 / -1;
+  }
+
+  .promesa {
+    display: grid;
+    grid-template-columns: 740px 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .promesa__text p {
+    text-align: justify;
+    margin-bottom: 1em;
+  }
+  .promesa h2 {
+    font-size: var(--fs-70);
+    line-height: var(--lh-70);
+    text-align: right;
+  }
+
+  .propuestas {
+    padding-block: 62px 24px;
+  }
+  .propuestas h2 {
+    text-align: center;
+    font-size: var(--fs-70);
+    line-height: 1;
+    color: var(--color-ink);
+    margin-bottom: 24px;
+  }
+  .propuestas ul {
+    display: grid;
+    grid-template-columns: repeat(2, 488px);
+    justify-content: space-between;
+    gap: 40px 60px;
+    max-width: 1076px;
+    margin: 0 auto;
+    padding: 20px;
+    list-style: none;
+    border: 1px dashed var(--color-grey-300);
+  }
+  .propuestas li {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 22px;
+    min-height: 198px;
+  }
+  .propuestas__photo {
+    width: 190px;
+    height: 198px;
+    object-fit: cover;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+  }
+  .propuestas h3 {
+    font-size: var(--fs-24);
+    line-height: var(--lh-body-large);
+    color: var(--color-brand-yellow);
+    margin-bottom: 12px;
+  }
+  .propuestas h3 span {
+    display: block;
+  }
+  .propuestas li p {
+    font-size: var(--fs-11);
+    line-height: var(--lh-11);
+    text-align: justify;
+  }
+
+  .comparte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-block: 0 58px;
+  }
+  .comparte__photo {
+    width: 620px;
+    height: 233px;
+    object-fit: cover;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+  }
+  .comparte h2 {
+    font-size: var(--fs-40);
+    line-height: var(--lh-40);
+    font-weight: 900;
+  }
+  .comparte h2 span {
+    font-weight: 400;
+  }
+
+  /* Tablet and mobile (derived): everything stacks in one column. */
+  @media (max-width: 1024px) {
+    .hero {
+      height: auto;
+      overflow: visible;
+    }
+    .hero__photo {
+      position: static;
+      width: 100%;
+      height: 360px;
+      object-position: 70% top;
+    }
+    .hero__text {
+      max-width: none;
+      padding-top: 32px;
+      padding-bottom: 40px;
+    }
+    .hero h1 {
+      font-size: var(--fs-48);
+    }
+    .franja {
+      position: relative;
+      height: 200px;
+    }
+    .franja__band {
+      height: 200px;
+      object-fit: cover;
+    }
+    .franja__word {
+      width: min(360px, 60vw);
+      height: auto;
+    }
+    .libertarismo {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding-block: 40px;
+    }
+    .libertarismo__word {
+      width: min(420px, 80%);
+      justify-self: start;
+    }
+    .leaders {
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-block: 40px;
+    }
+    .band {
+      min-height: 0;
+    }
+    .objetivo {
+      grid-template-columns: 1fr;
+    }
+    .objetivo h2 {
+      font-size: var(--fs-40);
+      line-height: 1.1;
+    }
+    .promesa {
+      grid-template-columns: 1fr;
+    }
+    .promesa h2 {
+      order: -1;
+      text-align: left;
+      font-size: var(--fs-48);
+      line-height: 1.1;
+    }
+    .propuestas h2 {
+      font-size: var(--fs-48);
+    }
+    .propuestas ul {
+      grid-template-columns: 1fr;
+      max-width: 640px;
+    }
+    .propuestas li p {
+      font-size: var(--fs-14);
+      line-height: var(--lh-14);
+    }
+    .comparte {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .comparte__photo {
+      width: 100%;
+      max-width: 620px;
+      height: auto;
+      aspect-ratio: 620 / 233;
+    }
+  }
+  @media (max-width: 640px) {
+    .hero__photo {
+      height: 260px;
+    }
+    .hero h1 {
+      font-size: var(--fs-40);
+    }
+    .franja,
+    .franja__band {
+      height: 130px;
+    }
+    .franja__word {
+      width: min(260px, 70vw);
+    }
+    .propuestas h2 {
+      font-size: var(--fs-32);
+    }
+    .propuestas li {
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+    }
+    .propuestas__photo {
+      width: 110px;
+      height: auto;
+      aspect-ratio: 190 / 198;
+    }
+    .propuestas h3 {
+      font-size: var(--fs-18);
+      line-height: 1.2;
+    }
+  }
+</style>

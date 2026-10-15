@@ -1,0 +1,37 @@
+---
+import "../styles/global.css";
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: "organizacion" | "colabora" | "documentos" | "blog" | "afiliacion";
+  menu?: boolean; // false: the page draws its own header
+}
+
+const { title, description, current, menu = true } = Astro.props;
+const ogImage = new URL("/og.jpg", Astro.site ?? Astro.url).href;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_VE" />
+    <meta property="og:site_name" content="Movimiento Libertario de Venezuela" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    {menu && <Menu current={current} />}
+    <slot />
+    <Footer />
+  </body>
+</html>

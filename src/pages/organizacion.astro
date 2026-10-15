@@ -1,0 +1,305 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import cabecera from "../assets/organizacion/cabecera.jpg";
+import coordinacion from "../assets/organizacion/coordinacion.jpg";
+import directiva from "../assets/organizacion/directiva.jpg";
+import comision from "../assets/organizacion/comision.jpg";
+import representantes from "../assets/organizacion/representantes.jpg";
+
+// Photo geometry from Figma node 50:2: each photo is placed inside a 584 px
+// wide rectangle; box values are the photo's offset and size relative to it.
+const photos = [
+  { src: coordinacion, height: 343.46, box: { left: -23, top: -27.28, width: 914, height: 500.56 } },
+  { src: directiva, height: 319.46, box: { left: -215, top: -111.55, width: 843.34, height: 531.81 } },
+  { src: comision, height: 359.16, box: { left: -94.57, top: -180.13, width: 783.87, height: 546.24 } },
+  { src: representantes, height: 337.92, box: { left: -31, top: -39.86, width: 625.92, height: 417.26 } },
+];
+
+// Copy as drawn in Figma (nodes 2091:1182-1190).
+const cards = [
+  { id: "coordinacion", title: ["Coordinación", "general"] },
+  { id: "directiva", title: ["Junta", "directiva"] },
+  { id: "comision", title: ["Comisión de", "garantías"] },
+  { id: "representantes", title: ["Representantes", "libertarios"] },
+];
+---
+
+<BaseLayout
+  title="Organización | Movimiento Libertario de Venezuela"
+  description="Estructura del Movimiento Libertario de Venezuela: coordinación general, junta directiva, comisión de garantías y representantes."
+  current="organizacion"
+>
+  <main>
+    <section class="cabecera" aria-label="Foto de cabecera">
+      <Image
+        class="cabecera__photo"
+        src={cabecera}
+        alt=""
+        widths={[1440, 2880]}
+        sizes="1440px"
+        loading="eager"
+      />
+    </section>
+
+    <section class="venezuela" aria-labelledby="venezuela-title">
+      <div class="container venezuela__inner">
+        <h1 id="venezuela-title">nosotros en venezuela</h1>
+        <div class="text venezuela__text">
+          <p>
+            Nuestro equipo en Venezuela está organizado de manera autónoma por equipos, encabezados por la <strong>coordinación general y la junta directiva nacional</strong>, elegida por todos los activistas miembros del movimiento.
+          </p>
+          <p>
+            Seguimos trabajando para garantizar y organizar la seguridad de nuestros activistas y simpatizantes dentro del país, con el objetivo de efectuar movimientos que respondan a la realidad del país. Nuestra prioridad es la organización y la acción directa <strong><em>no-violenta.</em></strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="internacional" aria-labelledby="internacional-title">
+      <div class="container internacional__inner">
+        <h2 id="internacional-title">EQUIPO INTERNACIONAL</h2>
+        <div class="text internacional__text">
+          <p>
+            Estamos organizados en diferentes países de <strong>América y Europa</strong>, con el objetivo de conectar al exilio venezolano y trabajar junto a nuestros aliados en generar un proceso de apoyo a la libertad de Venezuela en los países residentes.
+          </p>
+          <p>
+            Somos conscientes de la realidad que significa el exilio para nuestro país y el equipo directivo. Estamos enfocados en generar una red amplia para generar un <strong>movimiento internacional.</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="estructura">
+      <div class="estructura__cards">
+        <article id="org-block-coordinacion" class="card" aria-labelledby="card-coordinacion">
+          <h2 id="card-coordinacion">{cards[0].title[0]}<br />{cards[0].title[1]}</h2>
+          <div class="text">
+            <p>
+              El coordinador general es la mayor posición de liderazgo dentro de la organización, siendo elegido por todos los miembros activistas de manera directa. Precediendo la <strong>Junta Directiva y el Consejo General.</strong>
+            </p>
+            <p>
+              En sus responsabilidades está en organizar, coordinar y dirigir las decisiones tomadas en los equipos de trabajo, como la de sincronizar los esfuerzos internos como externos del movimiento libertario.
+            </p>
+          </div>
+        </article>
+
+        <article id="org-block-junta" class="card" aria-labelledby="card-directiva">
+          <h2 id="card-directiva">{cards[1].title[0]}<br />{cards[1].title[1]}</h2>
+          <div class="text">
+            <p>
+              La Junta Directiva es la instancia administrativa y política de la organización, conformada por el <strong>coordinador general, secretario general, secretario de formación, secretario de tesorería y el secretario de comunicaciones</strong>. Elegidos por voto directo de todos los activistas.
+            </p>
+            <p>
+              Las decisiones tomadas por la directiva son de cumplimiento inmediato y desarrolla la dirección política del movimiento.
+            </p>
+          </div>
+        </article>
+
+        <article id="org-block-comision" class="card" aria-labelledby="card-comision">
+          <h2 id="card-comision">{cards[2].title[0]}<br />{cards[2].title[1]}</h2>
+          <div class="text">
+            <p>
+              Es la instancia que garantiza y gestionar las normativas internas del movimiento libertario, quienes velan por el buen funcionamiento de la coordinación general y la junta directiva.
+            </p>
+            <p>
+              Son quienes gestionan junto a los demás miembros del <strong>Consejo General</strong> las regulaciones y decisiones más importante de la organización.
+            </p>
+          </div>
+        </article>
+
+        <article id="org-block-representantes" class="card" aria-labelledby="card-representantes">
+          <h2 id="card-representantes">{cards[3].title[0]}<br />{cards[3].title[1]}</h2>
+          <div class="text">
+            <p>
+              Los representantes son los activistas o simpatizantes designados por las autoridades y los estatutos de la organización para ser las voces locales y coyunturales del movimiento libertario.
+            </p>
+            <p><strong>Todos los miembros pueden ser representantes tanto permanentes como temporales.</strong></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="estructura__photos" aria-hidden="true">
+        {
+          photos.map((p) => (
+            <div class="shot" style={`height:${p.height}px`}>
+              <Image
+                src={p.src}
+                alt=""
+                widths={[584, 1168]}
+                sizes="584px"
+                style={`left:${p.box.left}px;top:${p.box.top}px;width:${p.box.width}px;height:${p.box.height}px`}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Header photo: 383 px band; the photo is 1463 x 971 offset (-19, -277). */
+  .cabecera {
+    position: relative;
+    height: 383px;
+    overflow: hidden;
+  }
+  .cabecera__photo {
+    position: absolute;
+    left: -19px;
+    top: -277px;
+    width: 1463px;
+    height: 971px;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .text {
+    font-size: var(--fs-16);
+    line-height: var(--lh-normal);
+    text-align: justify;
+  }
+  .text p + p {
+    margin-top: 1lh;
+  }
+
+  h1,
+  h2 {
+    font-size: var(--fs-48);
+    line-height: 0.767;
+    text-transform: uppercase;
+  }
+
+  /* Nosotros en Venezuela: title at y 594, text at y 671, ink band at y 862. */
+  .venezuela__inner {
+    padding-block: 53px 58px;
+  }
+  .venezuela h1 {
+    height: 47px;
+    margin-bottom: 30px;
+    line-height: 1.155;
+  }
+  .venezuela__text {
+    max-width: 763px;
+  }
+
+  /* Equipo internacional: ink band 334 px tall, title right-aligned. */
+  .internacional {
+    background: var(--color-ink);
+    color: var(--color-white);
+    height: 334px;
+  }
+  .internacional__inner {
+    padding-top: 58px;
+  }
+  .internacional h2 {
+    max-width: 564px;
+    margin-left: auto;
+    text-align: right;
+    line-height: 1.083;
+  }
+  .internacional__text {
+    max-width: 734px;
+    margin: 30px 0 0 auto;
+  }
+
+  /* Structure: cards (x 60, 776 wide) beside a 584 px photo column. */
+  .estructura {
+    display: grid;
+    grid-template-columns: 856px 584px;
+    max-width: var(--page-width);
+    margin-inline: auto;
+    margin-bottom: 119px;
+  }
+  .estructura__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+    padding: 84px 20px 20px var(--page-gutter);
+  }
+  .card {
+    max-width: 776px;
+    height: 260px;
+  }
+  .card h2 {
+    margin-bottom: 53px;
+    height: 74px;
+  }
+  .estructura__photos {
+    display: flex;
+    flex-direction: column;
+  }
+  .shot {
+    position: relative;
+    width: 584px;
+    overflow: hidden;
+  }
+  .shot :global(img) {
+    position: absolute;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  /* Tablet and mobile (derived): single column; the decorative photo
+     column of the structure block is hidden. */
+  @media (max-width: 1024px) {
+    .cabecera {
+      height: 240px;
+    }
+    .cabecera__photo {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    h1,
+    h2 {
+      font-size: var(--fs-40);
+      line-height: 1.1;
+    }
+    .venezuela h1 {
+      height: auto;
+    }
+    .internacional {
+      height: auto;
+      padding-bottom: 48px;
+    }
+    .internacional h2 {
+      max-width: none;
+      margin-left: 0;
+      text-align: left;
+    }
+    .internacional__text {
+      margin-left: 0;
+    }
+    .estructura {
+      display: block;
+      margin-bottom: 64px;
+    }
+    .estructura__cards {
+      gap: 48px;
+      padding: 56px var(--page-gutter) 0;
+    }
+    .card {
+      height: auto;
+    }
+    .card h2 {
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .estructura__photos {
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    h1,
+    h2 {
+      font-size: var(--fs-32);
+    }
+    .cabecera {
+      height: 180px;
+    }
+  }
+</style>

@@ -1,0 +1,265 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import cabecera from "../assets/articulo/cabecera.jpg";
+import inflacion from "../assets/articulo/inflacion.png";
+import libertadEconomica from "../assets/articulo/libertad-economica.png";
+
+// Copy as drawn in Figma (node 109:2).
+const categories = [
+  { label: "Análisis", href: "https://movimientolibertario.org/category/analisis/" },
+  { label: "Economía", href: "https://movimientolibertario.org/category/economia/" },
+  { label: "Opinión", href: "https://movimientolibertario.org/category/opinion/" },
+  { label: "Venezuela", href: "https://movimientolibertario.org/category/venezuela/" },
+];
+---
+
+<BaseLayout
+  title="Venezuela después del 28 de julio | Movimiento Libertario de Venezuela"
+  description="Análisis de Óscar José Torrealba sobre la economía venezolana después del 28 de julio."
+  current="blog"
+>
+  <main>
+    <header class="cabeza">
+      <Image
+        class="cabeza__photo"
+        src={cabecera}
+        alt=""
+        widths={[971, 1942]}
+        sizes="971px"
+        loading="eager"
+      />
+      <div class="cabeza__text">
+        <h1>VENEZUELA DESPUÉS DEL 28 DE JULIO</h1>
+        <p class="cabeza__byline">
+          por <a href="https://movimientolibertario.org/author/oscar_mlv/" target="_blank" rel="noopener noreferrer">Óscar José Torrealba</a> | Ago 27, 2024 |
+          {
+            categories.map((c, i) => (
+              <>
+                <a href={c.href} target="_blank" rel="noopener noreferrer">{c.label}</a>
+                {i < categories.length - 1 ? ", " : ""}
+              </>
+            ))
+          }
+        </p>
+      </div>
+    </header>
+
+    <article class="articulo">
+      <div class="text texto-1">
+        <p>
+          Un apreciado y reconocido periodista me ha preguntado por el comportamiento de la economía venezolana en lo que queda de 2024. Responder esta pregunta resulta hoy más que nunca difícil porque la situación actual en Venezuela es, indudablemente, compleja. Si bien la incertidumbre ha sido una constante en el país, el fraude electoral perpetrado por el brazo electoral del PSUV el 28 de julio ha elevado esta incertidumbre a niveles sin precedentes. El conflicto político, exacerbado por las acciones represivas del régimen de Nicolás Maduro y las persistentes violaciones a los derechos humanos, ha creado un escenario hostil con graves repercusiones en la inversión y sobre cualquier aspiración a un crecimiento económico.
+        </p>
+        <p>
+          Lo primero que hay que reconocer es que, con el fraude, el chavismo ha decidido incrementar el costo de su eventual salida del poder. Esto implica el abandono de la democracia totalitaria que lo caracterizaba y exige el establecimiento de un sistema mucho más represivo, similar al de Corea del Norte. Consecuentemente, se reduce el margen de tolerancia que le permitía al régimen obtener cierto respiro y maniobra, cerrándose así las pocas puertas que quedaban abiertas en el plano internacional.
+        </p>
+        <p>
+          Si el Partido Socialista mantiene el poder bajo estas condiciones, difícilmente podrá restablecer siquiera la frágil estabilidad que existía antes de las elecciones. Es fundamental destacar que el 28 de julio representa un punto de inflexión, ya que a partir de este momento se cuestiona, con sólidas evidencias, la legitimidad del régimen, y esto incluye Incluso a los propios aliados ideológicos de la izquierda latinoamericana. Esto obliga a la oligarquía chavista a intensificar la represión para mantenerse en el poder.
+        </p>
+        <p>
+          En ausencia de un cambio político que implique la salida del chavismo, Venezuela podría enfrentar otra ola migratoria. El éxodo de personas en busca de mejores oportunidades no solo reduce la demanda interna, sino que también merma la inversión, el empleo y la actividad económica en general.
+        </p>
+        <p>
+          Hasta el 27J, el régimen ha intentado estabilizar la inflación mediante una política de intervención cambiaria. Este esfuerzo ha resultado en una relativa disminución de la inflación, pero no ha resuelto los problemas institucionales subyacentes que la generan. La sostenibilidad del tipo de cambio es cuestionable. Todo gira en torno a una política de intervención cambiaria frágil que depende de un flujo constante de divisas, actualmente amenazado por el endurecimiento de las sanciones. No existe un marco institucional que proporcione solidez y confianza a la moneda nacional. En una economía altamente dolarizada como la venezolana, la intervención cambiaria solo logra desacelerar el ritmo de crecimiento de la inflación en bolívares, que actualmente ronda en 47%, pero presiona al alza la variación de precios en dólares, que se encuentra en 17%, ambas en términos interanuales (según datos de CEDICE).
+        </p>
+      </div>
+
+      <figure class="figura figura--1">
+        <Image
+          src={inflacion}
+          alt="Gráfico de la inflación interanual en bolívares y en dólares, según el inflaciómetro de CEDICE"
+          widths={[622, 1244]}
+          sizes="622px"
+        />
+        <figcaption>
+          (ver: <a href="https://t.co/ruB69Rd6Jf" target="_blank" rel="noopener noreferrer">https://cedice.org.ve/ogp/que-cedice-de-economia/inflaciometro/…</a>)
+        </figcaption>
+      </figure>
+
+      <div class="text texto-2">
+        <p>
+          Los esfuerzos de los socialistas pragmáticos por lograr una recuperación económica han sido considerables, aunque no lo parezca, pero estaban condenados al fracaso bajo el actual escenario político y económico generado por su propio modelo empobrecedor. Podríamos ignorar el deterioro institucional del país y centrarnos en pequeños aumentos en el Producto Interno Bruto, tal como ocurrió en 2022 y el consecuente debate sobre si “Venezuela se arregló”, pero nada de esto conducirá al pais a una senda de crecimiento y prosperidad típica de economías que gozan de libertades políticas, económicas y sociales. La evidencia científica, respaldada por índices como los del Fraser Institute y la Heritage Foundation, es concluyente al respecto.
+        </p>
+      </div>
+
+      <figure class="figura figura--2">
+        <Image
+          src={libertadEconomica}
+          alt="Gráfico de libertad económica e ingreso per cápita por cuartil, según el Fraser Institute"
+          widths={[622, 1244]}
+          sizes="622px"
+        />
+        <figcaption>
+          (ver: <a href="https://t.co/TcsCVIrBVq" target="_blank" rel="noopener noreferrer">https://fraserinstitute.org/studies/economic-freedom…</a>)
+        </figcaption>
+      </figure>
+
+      <div class="text texto-3">
+        <p>
+          Es crucial analizar con cautela cualquier crecimiento económico que se observe. Partiendo de un PIB tan reducido como el venezolano, cualquier actividad económica suma un porcentaje positivo, pero esto no implica una mejora sustancial. Venezuela está muy lejos de alcanzar niveles aceptables de actividad económica, prosperidad y avance tecnológico que propicien calidad de vida. Es probable que incluso países como Cuba y Corea del Norte presenten variaciones positivas del PIB ocasionalmente, aunque la falta de datos confiables impide confirmarlo.
+        </p>
+        <p>
+          Lo observado hasta ahora representa el mejor escenario posible que el socialismo pragmático ha podido ofrecer desde 2018; sin embargo, aumentar el costo de su salida los obliga a ellos a renunciar a sus pocas posibilidades de tener un mínimo de éxito en medio de su propio desastre institucional.
+        </p>
+        <p>
+          Venezuela enfrenta un escenario sumamente complejo, caracterizado por un alto nivel de incertidumbre y hostilidad, que solo podría mitigarse con un cambio político que implique la salida del régimen militar y el establecimiento de una economía de libre mercado. En estas condiciones, es difícil vislumbrar un camino hacia la prosperidad. El país necesita cambios fundamentales en sus estructuras políticas y económicas para tener alguna esperanza de recuperación real y sostenible. Mientras tanto, Venezuela continuará navegando en aguas turbulentas, con un futuro económico tan oscuro como su presente político.
+        </p>
+        <p>
+          Libertad para María Oropeza y todos los presos políticos. Mis condolencias a todos los familiares de aquellos valientes asesinados por el régimen, solo por defender su voto y clamar libertad.
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Header: 613 px ink band, photo on the right 971 px, text block centred at x 230. */
+  .cabeza {
+    position: relative;
+    max-width: var(--page-width);
+    height: 613px;
+    margin-inline: auto;
+    background: var(--color-ink);
+    overflow: hidden;
+  }
+  .cabeza__photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 971px;
+    height: 613px;
+    object-fit: cover;
+  }
+  .cabeza__text {
+    position: absolute;
+    top: 40px;
+    left: 46px;
+    width: 368px;
+    text-align: center;
+  }
+  .cabeza h1 {
+    color: var(--color-brand-yellow);
+    font-size: var(--fs-48);
+    line-height: 0.767;
+  }
+  .cabeza__byline {
+    margin: 30px -17px 0;
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--fs-14);
+    line-height: 1.155;
+  }
+
+  /* Article column: x 170, 1083 px wide, vertical rhythm as drawn. */
+  .articulo {
+    max-width: var(--page-width);
+    margin: 0 auto 54px;
+    padding: 43px 187px 0 170px;
+  }
+  .text {
+    color: var(--color-ink);
+    font-size: var(--fs-15);
+    text-align: justify;
+  }
+  .text p + p {
+    margin-top: 1lh;
+  }
+  .texto-1 p:nth-child(3),
+  .texto-1 p:nth-child(5) {
+    margin-top: 0;
+  }
+
+  .figura {
+    width: 622px;
+    margin: 0 auto;
+  }
+  .figura img {
+    width: 622px;
+  }
+  .figura--1 {
+    margin-top: 50px;
+  }
+  .figura--1 img {
+    height: 349px;
+    object-fit: cover;
+  }
+  .figura--2 {
+    margin-top: 49px;
+  }
+  .figura--2 img {
+    height: 403px;
+    object-fit: cover;
+  }
+  .figura figcaption {
+    height: 24px;
+    margin-top: 23px;
+    background: var(--color-grey-300);
+    color: var(--color-black);
+    font-size: var(--fs-15);
+    line-height: 24px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .figura--2 figcaption {
+    margin-top: 47px;
+  }
+  .texto-2 {
+    margin-top: 50px;
+  }
+  .texto-3 {
+    margin-top: 48px;
+  }
+
+  /* Tablet and mobile (derived): header stacks, article uses the gutter. */
+  @media (max-width: 1024px) {
+    .cabeza {
+      height: auto;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .cabeza__photo {
+      position: static;
+      width: 100%;
+      height: 320px;
+    }
+    .cabeza__text {
+      position: static;
+      width: auto;
+      padding: 32px var(--page-gutter);
+    }
+    .cabeza__byline {
+      margin: 20px 0 0;
+    }
+    .articulo {
+      padding: 32px var(--page-gutter) 0;
+    }
+    .figura {
+      width: 100%;
+      max-width: 622px;
+    }
+    .figura img {
+      width: 100%;
+      height: auto !important;
+    }
+    .figura figcaption {
+      height: auto;
+      padding: 4px 8px;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+  }
+  @media (max-width: 640px) {
+    .cabeza__photo {
+      height: 220px;
+    }
+    .cabeza h1 {
+      font-size: var(--fs-32);
+      line-height: 1.1;
+    }
+    .text {
+      text-align: left;
+    }
+  }
+</style>

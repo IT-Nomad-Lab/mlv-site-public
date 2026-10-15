@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Página no encontrada | MLV" description="La página que buscas no existe.">
+  <main class="nf">
+    <h1 class="nf__title">404</h1>
+    <p class="nf__text">La página que buscas no existe o fue movida.</p>
+    <a class="nf__link" href="/">Volver al inicio</a>
+  </main>
+</BaseLayout>
+
+<style>
+  .nf {
+    padding: 120px var(--page-gutter);
+    text-align: center;
+  }
+  .nf__title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--fs-70);
+    margin: 0 0 16px;
+  }
+  .nf__text {
+    font-family: var(--font-body);
+    font-size: var(--fs-18);
+    margin: 0 0 32px;
+  }
+  .nf__link {
+    font-family: var(--font-display);
+    font-weight: 900;
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>

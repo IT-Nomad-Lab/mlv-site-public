@@ -1,0 +1,25 @@
+/* Spacing and layout tokens. Source: Figma "Mlv-Andres", page Inicio (1:2).
+   The design has desktop frames only (1440 px): no tablet or mobile breakpoint
+   is defined in Figma. Breakpoints below are derived, not designed. */
+:root {
+  --page-width: 1440px;
+  --page-gutter: 60px;      /* left edge of text: 50% - 660px */
+  --content-width: 1320px;  /* page width minus two gutters */
+  --stack-gap: 30px;        /* hero heading to paragraph */
+  --menu-height: 158px;
+  --footer-height: 569px;
+}
+/* Custom properties cannot be used inside @media. Breakpoint values (derived):
+   tablet 1024px, mobile 640px. Below them the gutter and menu height shrink. */
+@media (max-width: 1024px) {
+  :root {
+    --page-gutter: 32px;
+    --menu-height: 110px;
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --page-gutter: 20px;
+    --menu-height: 84px;
+  }
+}

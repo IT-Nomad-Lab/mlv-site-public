@@ -1,0 +1,13 @@
+/* Colour tokens. Source: Figma "Mlv-Andres" (GcsyaaiGReK0aeRZIcPIRt), page Inicio (1:2)
+   and its Menú and Pie de web instances. The file defines no colour styles or
+   variables, so each value is the literal fill used in the frames.
+   This is the only place colours are defined. */
+:root {
+  --color-brand-yellow: #fcbf00; /* Menú bar, Pie de web body, accents on dark bands */
+  --color-ink: #1e1e1e;          /* dark bands (Nuestros Objetivos, footer top), headings */
+  --color-black: #000000;        /* body text */
+  --color-white: #ffffff;        /* page background, text on dark bands */
+  --color-grey-100: #f2f2f2;     /* body text on dark bands */
+  --color-grey-300: #d9d9d9;     /* "Venezuela es la promesa" band */
+  --color-doc-outline: #c9a6f5;  /* Documentos column dashed border; estimated from the frame render, not read from the file */
+}

@@ -1,0 +1,217 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import destacado from "../assets/blog/destacado.jpg";
+import articulo from "../assets/blog/articulo.jpg";
+
+// Copy as drawn in Figma (node 96:2).
+// Every article links to /articulo, the only article page there is for now.
+// The design repeats one placeholder article in all four cards.
+const card = {
+  author: "Movimiento Libertario",
+  body: "Es un equipo de voluntarios tanto internos como externos que se creo para crear un espacio donde se puede conseguir asistencia médica, psicológica y legal en Venezuela.",
+};
+const rows = [
+  { id: "opinion", label: "OPINIÓN Y analisis", width: 247, articles: [card, card] },
+  { id: "comunicados", label: "COMUNICADOS Y ORGANIZACIÓN", width: 293, articles: [card, card] },
+];
+---
+
+<BaseLayout
+  title="Blog | Movimiento Libertario de Venezuela"
+  description="Opinión, análisis y comunicados del Movimiento Libertario de Venezuela."
+  current="blog"
+>
+  <main>
+    <h1 class="sr-only">Blog</h1>
+
+    <section class="destacado" aria-labelledby="destacado-title">
+      <div class="destacado__text">
+        <h2 id="destacado-title"><a href="/articulo">ARTICULO DESTACADO</a></h2>
+        <div class="text">
+          <p>
+            Es un equipo de voluntarios tanto internos como externos que se creo para crear un espacio donde se puede conseguir asistencia médica, psicológica y legal en Venezuela.
+          </p>
+          <p>
+            Asistiendo a cientos de personas mediante organizaciones de voluntarios asociadas y que tiene el objetivo de crear un apoyo real, sin importar posiciones políticas a los venezolanos.
+          </p>
+        </div>
+      </div>
+      <Image
+        class="destacado__photo"
+        src={destacado}
+        alt="Venezuela después del 28 de julio"
+        widths={[858, 1716]}
+        sizes="858px"
+        loading="eager"
+      />
+    </section>
+
+    {
+      rows.map((row) => (
+        <section id={row.id} class="fila" aria-labelledby={`${row.id}-title`}>
+          <h2 id={`${row.id}-title`} class="fila__label" style={`width:${row.width}px`}>
+            {row.label}
+          </h2>
+          <div class="fila__articles">
+            {row.articles.map((a) => (
+              <article class="articulo">
+                <a class="articulo__link" href="/articulo">
+                  <Image src={articulo} alt="" widths={[531, 1062]} sizes="531px" />
+                  <p class="articulo__author">Autor: {a.author}</p>
+                  <p class="articulo__body">{a.body}</p>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </main>
+</BaseLayout>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* Featured article: 331 px ink band, photo panel 858 px wide at right. */
+  .destacado {
+    position: relative;
+    display: flex;
+    max-width: var(--page-width);
+    height: 331px;
+    margin-inline: auto;
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+  .destacado__text {
+    width: 582px;
+    padding: 62px 0 0 var(--page-gutter);
+  }
+  .destacado h2 {
+    color: var(--color-brand-yellow);
+    font-size: var(--fs-36);
+    line-height: 0.767;
+    margin-bottom: 30px;
+  }
+  .destacado__text .text {
+    max-width: 468px;
+    font-size: var(--fs-15);
+    text-align: justify;
+  }
+  .destacado__text .text p + p {
+    margin-top: 1lh;
+  }
+  .destacado__photo {
+    width: 858px;
+    height: 331px;
+    object-fit: cover;
+  }
+
+  /* Article rows: label button at x 129, cards 531 px wide, 121 px apart. */
+  .fila {
+    max-width: var(--page-width);
+    margin: 56px auto 0;
+    padding-left: 129px;
+  }
+  .fila + .fila {
+    margin-top: 102px;
+  }
+  .fila:last-child {
+    margin-bottom: 79px;
+  }
+  .fila__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 57px;
+    margin-bottom: 55px;
+    background: var(--color-grey-300);
+    color: var(--color-black);
+    font-size: var(--fs-15);
+    line-height: var(--lh-normal);
+    text-align: center;
+  }
+  .fila__articles {
+    display: grid;
+    grid-template-columns: repeat(2, 531px);
+    column-gap: 121px;
+  }
+  .destacado h2 a,
+  .articulo__link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .articulo__link {
+    display: block;
+  }
+  .articulo img {
+    width: 531px;
+    height: 296px;
+    object-fit: cover;
+  }
+  .articulo__author {
+    color: var(--color-black);
+    font-size: var(--fs-15);
+  }
+  .articulo__body {
+    margin-top: 10px;
+    color: var(--color-ink);
+    font-size: var(--fs-15);
+    text-align: justify;
+  }
+
+  /* Tablet and mobile (derived): featured block and rows stack. */
+  @media (max-width: 1024px) {
+    .destacado {
+      flex-direction: column;
+      height: auto;
+    }
+    .destacado__text {
+      width: auto;
+      padding: 40px var(--page-gutter);
+    }
+    .destacado__text .text {
+      max-width: none;
+    }
+    .destacado__photo {
+      width: 100%;
+      height: 280px;
+    }
+    .fila {
+      padding-inline: var(--page-gutter);
+    }
+    .fila__label {
+      width: 100% !important;
+      margin-bottom: 32px;
+    }
+    .fila__articles {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 32px;
+      row-gap: 32px;
+    }
+    .articulo img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 531 / 296;
+    }
+  }
+  @media (max-width: 640px) {
+    .fila__articles {
+      grid-template-columns: 1fr;
+    }
+    .destacado__photo {
+      height: 200px;
+    }
+    .destacado h2 {
+      font-size: var(--fs-32);
+      line-height: 1.1;
+    }
+  }
+</style>

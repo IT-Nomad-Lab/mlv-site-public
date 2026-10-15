@@ -1,0 +1,46 @@
+/* Type tokens. Source: Figma "Mlv-Andres", page Inicio (1:2).
+   Figma variable defined: Body Large/Line Height = 24 (see --lh-body-large).
+   Chamelton 10 Display (Regular, Black) is served from public/fonts; the body
+   families are not bundled and fall back to system fonts. */
+@font-face {
+  font-family: "Chamelton 10 Display";
+  src: url("/fonts/Chamelton10-Rg.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chamelton 10 Display";
+  src: url("/fonts/Chamelton10-Blk.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --font-display: "Chamelton 10 Display", system-ui, sans-serif; /* weights used: Regular, Black */
+  --font-body: "DejaVu Sans", "Lucida Sans", system-ui, sans-serif; /* Book, Bold, Oblique; some blocks use Lucida Sans */
+
+  --fs-11: 0.6875rem; /* proposal card text */
+  --fs-14: 0.875rem;  /* footer small print, leader name/role */
+  --fs-15: 0.9375rem; /* "comparte la libertad" */
+  --fs-16: 1rem;      /* body, menu items */
+  --fs-18: 1.125rem;  /* Documentos card text */
+  --fs-20: 1.25rem;   /* footer menu */
+  --fs-24: 1.5rem;    /* proposal card title */
+  --fs-32: 2rem;      /* Documentos card titles */
+  --fs-36: 2.25rem;   /* "Artículo destacado" */
+  --fs-40: 2.5rem;    /* "Comparte nuestras ideas" */
+  --fs-48: 3rem;      /* Organización section titles */
+  --fs-60: 3.75rem;   /* hero heading */
+  --fs-64: 4rem;      /* "Nuestro objetivó" */
+  --fs-70: 4.375rem;  /* section titles */
+
+  --lh-body-large: 24px; /* Figma variable Body Large/Line Height */
+  --lh-tight: 1.155;     /* hero heading */
+  --lh-normal: normal;
+  --lh-11: 15px;
+  --lh-14: 20px;
+  --lh-footer: 34px;
+  --lh-40: 41px;
+  --lh-70: 78px;
+}
